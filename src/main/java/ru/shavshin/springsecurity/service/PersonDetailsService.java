@@ -1,7 +1,6 @@
 package ru.shavshin.springsecurity.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +22,7 @@ public class PersonDetailsService implements UserDetailsService {
        Optional<PersonEntity> person = peopleRepository.findByUsername(username);
 
        if (person.isEmpty()) {
-            new UsernameNotFoundException("User not found!");
+           throw new UsernameNotFoundException("User not found!");
        }
        return new PersonDetails(person.get());
     }

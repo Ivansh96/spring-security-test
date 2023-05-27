@@ -12,9 +12,7 @@ import ru.shavshin.springsecurity.service.PeopleService;
 @Component
 @RequiredArgsConstructor
 public class PersonValidator implements Validator {
-
     private final PeopleService peopleService;
-
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -25,7 +23,8 @@ public class PersonValidator implements Validator {
     public void validate(Object target, Errors errors) {
         PersonEntity person = (PersonEntity) target;
 
-        if (peopleService.findByUsername(person.getUsername()).isPresent())
-            errors.rejectValue("username",  "Такое имя пользователя уже существует!");
+        if (peopleService.findByUsername(person.getUsername()).isPresent()) {
+            errors.rejectValue("username", "Такое имя пользователя уже существует!");
+        }
     }
 }

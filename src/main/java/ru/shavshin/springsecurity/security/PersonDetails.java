@@ -10,9 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @RequiredArgsConstructor
-public class PersonDetails implements UserDetails {
-    private final PersonEntity person;
-
+public record PersonDetails(PersonEntity person) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
@@ -46,9 +44,5 @@ public class PersonDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public PersonEntity getPerson() {
-        return this.person;
     }
 }

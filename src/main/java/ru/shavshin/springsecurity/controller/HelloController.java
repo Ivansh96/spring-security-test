@@ -18,16 +18,18 @@ public class HelloController {
     public String hello() {
         return "hello";
     }
+
     @GetMapping("/showUserInfo")
     public String showUserInfo() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
-        System.out.println(personDetails.getPerson());
+        System.out.println(personDetails.person());
 
         return "hello";
     }
+
     @GetMapping("/admin")
     public String adminPage() {
         adminService.doStuff();

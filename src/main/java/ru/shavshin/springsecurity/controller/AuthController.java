@@ -40,7 +40,6 @@ public class AuthController {
             return "/auth/registration";
         }
         registrationService.register(person);
-
         return "redirect:/auth/login";
     }
 }
